@@ -38,4 +38,28 @@ describe("TicTacToe component", () => {
     const x = screen.getByText("X");
     expect(x).toBeInTheDocument();
   });
+
+  test("should end in a draw when all cells are full", () => {
+    render(<TicTacToe />);
+    const element0 = screen.getByTestId("cell-0");
+    const element1 = screen.getByTestId("cell-1");
+    const element2 = screen.getByTestId("cell-2");
+    const element3 = screen.getByTestId("cell-3");
+    const element4 = screen.getByTestId("cell-4");
+    const element5 = screen.getByTestId("cell-5");
+    const element6 = screen.getByTestId("cell-6");
+    const element7 = screen.getByTestId("cell-7");
+    const element8 = screen.getByTestId("cell-8");
+    userEvent.click(element0);
+    userEvent.click(element1);
+    userEvent.click(element2);
+    userEvent.click(element3);
+    userEvent.click(element4);
+    userEvent.click(element5);
+    userEvent.click(element7);
+    userEvent.click(element6);
+    userEvent.click(element8);
+    const gameOverMessage = screen.getByText("Draw");
+    expect(gameOverMessage).toBeInTheDocument();
+  });
 });
