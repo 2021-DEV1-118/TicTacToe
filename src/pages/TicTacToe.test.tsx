@@ -29,4 +29,13 @@ describe("TicTacToe component", () => {
     expect(x).toBeInTheDocument();
     expect(o).toBeInTheDocument();
   });
+
+  test("should not be able to change a cell that was already clicked", () => {
+    render(<TicTacToe />);
+    const element = screen.getByTestId("cell-1");
+    userEvent.click(element);
+    userEvent.click(element);
+    const x = screen.getByText("X");
+    expect(x).toBeInTheDocument();
+  });
 });

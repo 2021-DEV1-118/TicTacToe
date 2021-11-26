@@ -7,6 +7,7 @@ function TicTacToe() {
   const [isXNext, setIsXNext] = useState<boolean>(true);
 
   const onClickHandler = (index: number) => {
+    if (cellValues[index]) return;
     setCellValues((prev) => {
       const newArray = [...prev];
       newArray[index] = isXNext ? "X" : "O";
