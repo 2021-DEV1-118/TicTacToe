@@ -41,6 +41,13 @@ function TicTacToe() {
     return false;
   };
 
+  const playAgainHandler = () => {
+    setCellValues(Array(9).fill(null));
+    setIsXNext(true);
+    setMoveCount(0);
+    setIsWinner(false);
+  };
+
   return (
     <div className={styles["game__container"]}>
       <h1>TicTacToe</h1>
@@ -50,7 +57,16 @@ function TicTacToe() {
         {isWinner && <span>{isXNext ? "O" : "X"} wins</span>}
         {moveCount === 9 && !isWinner && <div>Draw</div>}
       </div>
+
       <Grid cells={cellValues} onClick={(index) => onClickHandler(index)} />
+
+      {(isWinner || moveCount === 9) && (
+        <div className={styles["game__actions"]}>
+          <button className={styles["game__actions-button"]} onClick={playAgainHandler}>
+            Play again
+          </button>
+        </div>
+      )}
     </div>
   );
 }
