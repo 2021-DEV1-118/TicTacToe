@@ -35,6 +35,6 @@ describe("Cell component", () => {
 
     const buttonElement = screen.getByRole("button");
 
-    expect(buttonElement.textContent).toBeUndefined();
+    expect(buttonElement.textContent).toEqual("");
   });
 });
