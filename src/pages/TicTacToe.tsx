@@ -62,7 +62,10 @@ function TicTacToe() {
 
       {(isWinner || moveCount === 9) && (
         <div className={styles["game__actions"]}>
-          <button className={styles["game__actions-button"]} onClick={playAgainHandler}>
+          <button
+            className={styles["game__actions-button"]}
+            onClick={playAgainHandler}
+            data-testid='btn-play-again'>
             Play again
           </button>
         </div>
