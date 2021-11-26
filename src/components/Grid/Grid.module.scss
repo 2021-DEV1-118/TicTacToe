@@ -1,5 +1,8 @@
 .grid__container {
+  margin: 100px 0;
 }
 
 .grid__row {
+  display: flex;
+  justify-content: center;
 }
