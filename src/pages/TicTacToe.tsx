@@ -42,11 +42,15 @@ function TicTacToe() {
   };
 
   return (
-    <div className={styles["container"]}>
+    <div className={styles["game__container"]}>
       <h1>TicTacToe</h1>
+
+      <div className={styles["game__messages"]}>
+        {moveCount < 9 && !isWinner && <span>Next player: {isXNext ? "X" : "O"}</span>}
+        {isWinner && <span>{isXNext ? "O" : "X"} wins</span>}
+        {moveCount === 9 && !isWinner && <div>Draw</div>}
+      </div>
       <Grid cells={cellValues} onClick={(index) => onClickHandler(index)} />
-      {isWinner && <div>{isXNext ? "O" : "X"} wins</div>}
-      {moveCount === 9 && <div>Draw</div>}
     </div>
   );
 }

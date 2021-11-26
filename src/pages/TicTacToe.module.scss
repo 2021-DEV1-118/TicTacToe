@@ -1,5 +1,11 @@
-.container {
+.game__container {
   margin: 50px auto;
   max-width: 1000px;
   text-align: center;
+}
+
+.game__messages {
+  font-weight: bold;
+  border: 1px solid #ccc;
+  padding: 10px;
 }

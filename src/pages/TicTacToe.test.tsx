@@ -53,13 +53,13 @@ describe("TicTacToe component", () => {
     userEvent.click(element0);
     userEvent.click(element1);
     userEvent.click(element2);
-    userEvent.click(element3);
     userEvent.click(element4);
+    userEvent.click(element3);
     userEvent.click(element5);
     userEvent.click(element7);
     userEvent.click(element6);
     userEvent.click(element8);
-    const gameOverMessage = screen.getByText("Draw");
+    const gameOverMessage = screen.getByText(/Draw/i);
     expect(gameOverMessage).toBeInTheDocument();
   });
 
