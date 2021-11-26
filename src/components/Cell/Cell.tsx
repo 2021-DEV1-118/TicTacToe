@@ -8,7 +8,7 @@ type Props = {
 
 export const Cell = (props: Props) => {
   return (
-    <button className={styles["cell"]} onClick={props.onClick} data-testid={"TESTID-TODO"}>
+    <button className={styles["cell"]} onClick={props.onClick} data-testid={props.testId}>
       {props.value}
     </button>
   );
