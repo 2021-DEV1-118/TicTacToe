@@ -62,4 +62,42 @@ describe("TicTacToe component", () => {
     const gameOverMessage = screen.getByText("Draw");
     expect(gameOverMessage).toBeInTheDocument();
   });
+
+  test("should end when 3 in a row", () => {
+    render(<TicTacToe />);
+    const element0 = screen.getByTestId("cell-0");
+    const element1 = screen.getByTestId("cell-1");
+    const element2 = screen.getByTestId("cell-2");
+    const element7 = screen.getByTestId("cell-7");
+    const element8 = screen.getByTestId("cell-8");
+    userEvent.click(element0);
+    userEvent.click(element8);
+    userEvent.click(element1);
+    userEvent.click(element7);
+    userEvent.click(element2);
+    userEvent.click(element0);
+    const winMessage = screen.getByText(/wins/i);
+    expect(winMessage).toBeInTheDocument();
+  });
+
+  test("should not be able to click cells if there is a winner", () => {
+    render(<TicTacToe />);
+    const element0 = screen.getByTestId("cell-0");
+    const element1 = screen.getByTestId("cell-1");
+    const element2 = screen.getByTestId("cell-2");
+    const element7 = screen.getByTestId("cell-7");
+    const element8 = screen.getByTestId("cell-8");
+    userEvent.click(element0);
+    userEvent.click(element8);
+    userEvent.click(element1);
+    userEvent.click(element7);
+    userEvent.click(element2);
+    userEvent.click(element0);
+    const winMessage = screen.getByText(/wins/i);
+    expect(winMessage).toBeInTheDocument();
+
+    const elementNew = screen.getByTestId("cell-3");
+    userEvent.click(elementNew);
+    expect(elementNew.textContent).toBe("");
+  });
 });

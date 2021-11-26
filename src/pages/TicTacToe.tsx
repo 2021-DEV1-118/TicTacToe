@@ -5,21 +5,48 @@ import { useState } from "react";
 function TicTacToe() {
   const [cellValues, setCellValues] = useState<string[]>(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState<boolean>(true);
+  const [moveCount, setMoveCount] = useState<number>(0);
+  const [isWinner, setIsWinner] = useState(false);
 
   const onClickHandler = (index: number) => {
-    if (cellValues[index]) return;
+    if (cellValues[index] || isWinner) return;
     setCellValues((prev) => {
       const newArray = [...prev];
       newArray[index] = isXNext ? "X" : "O";
+      if (checkIfWinner(newArray)) setIsWinner(true);
       return newArray;
     });
     setIsXNext((prev) => !prev);
+    setMoveCount((prev) => prev + 1);
+  };
+
+  const checkIfWinner = (values: string[]) => {
+    const winConditions = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (let i = 0; i < winConditions.length; i++) {
+      const [a, b, c] = winConditions[i];
+      if (values[a] && values[a] === values[b] && values[a] === values[c]) {
+        return true;
+      }
+    }
+    return false;
   };
 
   return (
     <div className={styles["container"]}>
       <h1>TicTacToe</h1>
       <Grid cells={cellValues} onClick={(index) => onClickHandler(index)} />
+      {isWinner && <div>{isXNext ? "O" : "X"} wins</div>}
+      {moveCount === 9 && <div>Draw</div>}
     </div>
   );
 }
