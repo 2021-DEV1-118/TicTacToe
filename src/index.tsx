@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import TicTacToe from "./TicTacToe";
+import TicTacToe from "./pages/TicTacToe";
 
 ReactDOM.render(
   <React.StrictMode>
