@@ -1,5 +1,6 @@
 import { Cell } from "../Cell/Cell";
 import styles from "./Grid.module.scss";
+import { useCallback } from "react";
 
 type Props = {
   cells: string[];
@@ -7,15 +8,18 @@ type Props = {
 };
 
 export const Grid = (props: Props) => {
-  const renderCell = (index: number) => {
-    return (
-      <Cell
-        value={props.cells[index]}
-        onClick={() => props.onClick(index)}
-        testId={`cell-${index}`}
-      />
-    );
-  };
+  const renderCell = useCallback(
+    (index: number) => {
+      return (
+        <Cell
+          value={props.cells[index]}
+          onClick={() => props.onClick(index)}
+          testId={`cell-${index}`}
+        />
+      );
+    },
+    [props]
+  );
 
   return (
     <div className={styles["grid__container"]}>
